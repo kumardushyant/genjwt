@@ -1,0 +1,1 @@
+# Project to encode payload as JWT
