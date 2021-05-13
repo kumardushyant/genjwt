@@ -8,7 +8,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 
 import com.google.api.client.http.HttpRequestFactory;
@@ -16,7 +15,6 @@ import com.google.api.client.http.apache.v2.ApacheHttpTransport;
 import com.google.common.io.Resources;
 
 import org.apache.http.client.HttpClient;
-import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.ssl.SSLContexts;
@@ -41,10 +39,6 @@ public class HTTPReqHelper {
                 | KeyStoreException | IOException e) {
             throw new MyException("Error loading keystore", e);
         }
-    }
-
-    public String get() {
-        return null;
     }
     
 }
