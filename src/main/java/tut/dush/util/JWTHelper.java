@@ -14,10 +14,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 
 public class JWTHelper {
 
-    private FileUtils fileUtils = new FileUtils();
     private RSAPublicKey publicKey;
     private RSAPrivateKey privateKey;
 
@@ -36,8 +37,9 @@ public class JWTHelper {
     }
 
     private void loadKeys() throws InvalidKeySpecException, NoSuchAlgorithmException, IOException {
-        String privStr = fileUtils.loadFileAsString("/home/dushyant/certs/priv.crt");
-        String pubStr = fileUtils.loadFileAsString("/home/dushyant/certs/pub1.crt");
+        
+        String privStr = Resources.asCharSource(Resources.getResource("priv.key"), Charsets.UTF_8).read();
+        String pubStr = Resources.asCharSource(Resources.getResource("pub.crt"), Charsets.UTF_8).read();
         
         privStr = privStr.replace("-----BEGIN PRIVATE KEY-----","").replace("-----END PRIVATE KEY-----", "")
                 .replaceAll("\\n", "").replaceAll("\\r", "");
